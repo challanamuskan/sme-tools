@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SME Tools by Muskan Challana — AI Infrastructure for Indian Businesses</title>
+<meta name="description" content="Open-source AI tools built for Indian SMEs. CRM template, inbox parser, and curated toolkit — by Muskan Challana, AI product builder from Jaipur."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1814;--ink-mid:#4a4540;--ink-light:#8a857e;
+  --cream:#faf8f4;--cream-dark:#f0ece4;
+  --gold:#c8973a;--gold-light:#e8b85a;--gold-pale:#fdf3e0;
+  --white:#ffffff;--border:#e8e0d4;--radius:12px;
+  --ff-display:'Playfair Display',Georgia,serif;
+  --ff-body:'DM Sans',system-ui,sans-serif;
+  --ff-mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-body);background:var(--cream);color:var(--ink);line-height:1.7;overflow-x:hidden}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(250,248,244,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);transition:padding .3s}
+.nav-logo{font-family:var(--ff-display);font-size:1.1rem;font-weight:600;color:var(--ink);text-decoration:none}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{font-size:.875rem;color:var(--ink-mid);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-cta{font-size:.8rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.5rem 1.25rem;border-radius:100px;border:1.5px solid var(--ink);color:var(--ink);text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--ink);color:var(--cream)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:8rem 3rem 6rem;text-align:center;position:relative}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.35rem 1rem;border-radius:100px;margin-bottom:2rem;background:var(--gold-pale)}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-family:var(--ff-display);font-size:clamp(2.8rem,6vw,5rem);font-weight:700;line-height:1.1;letter-spacing:-0.03em;color:var(--ink);margin-bottom:1.5rem}
+h1 em{font-style:normal;color:var(--gold)}
+.hero-sub{font-size:1.15rem;color:var(--ink-mid);max-width:560px;margin:0 auto 3rem;font-weight:300;line-height:1.8}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-primary{font-size:.875rem;font-weight:500;letter-spacing:.04em;padding:.875rem 2rem;border-radius:100px;background:var(--ink);color:var(--cream);text-decoration:none;transition:transform .2s,background .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-primary:hover{background:var(--gold);transform:translateY(-2px)}
+.btn-secondary{font-size:.875rem;font-weight:500;letter-spacing:.04em;padding:.875rem 2rem;border-radius:100px;border:1.5px solid var(--border);color:var(--ink-mid);text-decoration:none;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.btn-secondary:hover{border-color:var(--ink);color:var(--ink);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-light)}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollDown 2s infinite}
+@keyframes scrollDown{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+section{padding:7rem 3rem;position:relative}
+.container{max-width:1080px;margin:0 auto}
+.section-label{font-size:.7rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+h2{font-family:var(--ff-display);font-size:clamp(2rem,4vw,3rem);font-weight:600;line-height:1.2;letter-spacing:-0.02em;color:var(--ink);margin-bottom:1.5rem}
+.section-intro{font-size:1.05rem;color:var(--ink-mid);max-width:520px;line-height:1.8;font-weight:300}
+.stats{background:var(--ink);padding:3rem}
+.stats-grid{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:2rem;text-align:center}
+.stat-num{font-family:var(--ff-display);font-size:2.5rem;font-weight:700;color:var(--gold);line-height:1}
+.stat-label{font-size:.8rem;color:rgba(250,248,244,.5);letter-spacing:.06em;text-transform:uppercase;margin-top:.4rem}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2rem;margin-top:4rem}
+.product-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;transition:transform .3s,box-shadow .3s,border-color .3s;display:flex;flex-direction:column;gap:1.25rem}
+.product-card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(26,24,20,.08);border-color:var(--gold)}
+.product-icon{width:48px;height:48px;border-radius:10px;background:var(--gold-pale);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.product-tag{font-size:.65rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);border:1px solid var(--gold);padding:.2rem .65rem;border-radius:100px;display:inline-block;background:var(--gold-pale)}
+.product-card h3{font-family:var(--ff-display);font-size:1.4rem;font-weight:600;line-height:1.3}
+.product-card p{font-size:.925rem;color:var(--ink-mid);line-height:1.75;flex:1}
+.product-features{list-style:none;display:flex;flex-direction:column;gap:.5rem}
+.product-features li{font-size:.825rem;color:var(--ink-mid);display:flex;align-items:flex-start;gap:.6rem;padding:.35rem 0;border-bottom:1px solid var(--cream-dark)}
+.product-features li:last-child{border-bottom:none}
+.feat-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);margin-top:.55rem;flex-shrink:0}
+.product-links{display:flex;gap:.75rem;flex-wrap:wrap}
+.link-primary{font-size:.8rem;font-weight:500;padding:.5rem 1.1rem;border-radius:100px;background:var(--ink);color:var(--cream);text-decoration:none;transition:background .2s}
+.link-primary:hover{background:var(--gold)}
+.link-ghost{font-size:.8rem;font-weight:500;padding:.5rem 1.1rem;border-radius:100px;border:1px solid var(--border);color:var(--ink-mid);text-decoration:none;transition:all .2s}
+.link-ghost:hover{border-color:var(--ink);color:var(--ink)}
+.demo-section{background:var(--cream-dark)}
+.demo-wrapper{margin-top:3.5rem;border-radius:16px;overflow:hidden;border:1px solid var(--border);box-shadow:0 32px 64px rgba(26,24,20,.12)}
+.demo-bar{background:var(--ink);padding:.75rem 1.25rem;display:flex;align-items:center;gap:.75rem}
+.demo-dots{display:flex;gap:.4rem}
+.demo-dots span{width:10px;height:10px;border-radius:50%}
+.demo-dots span:nth-child(1){background:#ff5f57}
+.demo-dots span:nth-child(2){background:#febc2e}
+.demo-dots span:nth-child(3){background:#28c840}
+.demo-url{flex:1;background:rgba(255,255,255,.08);border-radius:6px;padding:.25rem 1rem;font-family:var(--ff-mono);font-size:.75rem;color:rgba(250,248,244,.5)}
+.demo-content{background:var(--white);padding:2.5rem}
+.demo-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem}
+.demo-title{font-family:var(--ff-display);font-size:1.3rem;font-weight:600}
+.demo-badge{font-size:.7rem;font-weight:500;padding:.25rem .75rem;border-radius:100px;background:#e8f5e9;color:#2e7d32;letter-spacing:.04em}
+.demo-metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin-bottom:2rem}
+.metric-card{background:var(--cream);border-radius:8px;padding:1rem 1.25rem}
+.metric-val{font-family:var(--ff-display);font-size:1.6rem;font-weight:700;color:var(--ink)}
+.metric-lbl{font-size:.7rem;color:var(--ink-light);letter-spacing:.06em;text-transform:uppercase;margin-top:.2rem}
+.metric-trend{font-size:.75rem;color:#2e7d32;font-weight:500}
+.demo-table-wrap{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.demo-table{width:100%;border-collapse:collapse;font-size:.825rem}
+.demo-table th{background:var(--cream);padding:.7rem 1rem;text-align:left;font-weight:500;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-light);border-bottom:1px solid var(--border)}
+.demo-table td{padding:.8rem 1rem;border-bottom:1px solid var(--cream-dark);color:var(--ink-mid)}
+.demo-table tr:last-child td{border-bottom:none}
+.status-badge{font-size:.65rem;padding:.2rem .6rem;border-radius:100px;font-weight:500}
+.status-paid{background:#e8f5e9;color:#2e7d32}
+.status-pending{background:#fff8e1;color:#f57f17}
+.status-low{background:#ffebee;color:#c62828}
+.steps{display:flex;flex-direction:column;gap:0;margin-top:4rem;position:relative}
+.steps::before{content:'';position:absolute;left:23px;top:0;bottom:0;width:1px;background:var(--border)}
+.step{display:flex;gap:2rem;padding:2rem 0}
+.step-num{width:48px;height:48px;flex-shrink:0;border-radius:50%;background:var(--white);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:.9rem;font-weight:700;color:var(--gold);position:relative;z-index:1}
+.step-body h3{font-family:var(--ff-display);font-size:1.2rem;font-weight:600;margin-bottom:.5rem}
+.step-body p{font-size:.9rem;color:var(--ink-mid);line-height:1.7}
+.about-section{background:var(--ink);color:var(--cream)}
+.about-section .section-label{color:var(--gold-light)}
+.about-section h2{color:var(--cream)}
+.about-section .section-intro{color:rgba(250,248,244,.65)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-creds{list-style:none;margin-top:2.5rem;display:flex;flex-direction:column;gap:.75rem}
+.about-creds li{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:rgba(250,248,244,.65)}
+.cred-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);flex-shrink:0}
+.about-quote{border-left:2px solid var(--gold);padding-left:2rem;font-family:var(--ff-display);font-size:1.4rem;line-height:1.6;color:rgba(250,248,244,.9);font-style:italic}
+.about-quote cite{display:block;font-style:normal;font-family:var(--ff-body);font-size:.8rem;color:rgba(250,248,244,.4);margin-top:1rem;letter-spacing:.06em;text-transform:uppercase}
+.cta-section{text-align:center}
+.cta-inner{background:var(--gold-pale);border:1px solid var(--gold);border-radius:24px;padding:5rem 3rem;max-width:700px;margin:0 auto}
+.cta-section p{color:var(--ink-mid);font-size:1.05rem;font-weight:300;margin-bottom:2.5rem}
+.cta-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+footer{padding:2.5rem 3rem;background:var(--ink);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-left{font-size:.8rem;color:rgba(250,248,244,.4)}
+.footer-left a{color:var(--gold-light);text-decoration:none}
+.footer-right{display:flex;gap:1.5rem}
+.footer-right a{font-size:.8rem;color:rgba(250,248,244,.4);text-decoration:none;transition:color .2s}
+.footer-right a:hover{color:var(--gold-light)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+@media(max-width:768px){nav{padding:1rem 1.5rem}.nav-links{display:none}section{padding:5rem 1.5rem}.about-grid{grid-template-columns:1fr}.stats{padding:2rem 1.5rem}footer{padding:2rem 1.5rem;flex-direction:column}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">SME Tools</a>
+  <ul class="nav-links">
+    <li><a href="#products">Projects</a></li>
+    <li><a href="#demo">Live Demo</a></li>
+    <li><a href="#about">Builder</a></li>
+  </ul>
+  <a class="nav-cta" href="https://muskanchallana.vercel.app" target="_blank">Portfolio ↗</a>
+</nav>
+
+<section class="hero">
+  <div>
+    <div class="hero-eyebrow"><span class="pulse"></span>Open source · Production-ready · Built for India</div>
+    <h1>AI tools that actually<br/>work for <em>Indian SMEs</em></h1>
+    <p class="hero-sub">Every small business in India runs on WhatsApp threads and paper registers. These tools change that — deployed, not demoed.</p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="#demo">See it live →</a>
+      <a class="btn-secondary" href="https://github.com/challanamuskan" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
+</section>
+
+<div class="stats">
+  <div class="stats-grid">
+    <div class="reveal"><div class="stat-num">3</div><div class="stat-label">Open-source tools</div></div>
+    <div class="reveal reveal-delay-1"><div class="stat-num">2</div><div class="stat-label">Live paying clients</div></div>
+    <div class="reveal reveal-delay-2"><div class="stat-num">8h+</div><div class="stat-label">Admin saved weekly</div></div>
+    <div class="reveal reveal-delay-3"><div class="stat-num">63M</div><div class="stat-label">SMEs in India</div></div>
+  </div>
+</div>
+
+<section id="products">
+  <div class="container">
+    <p class="section-label reveal">Open-source projects</p>
+    <h2 class="reveal">Three tools. One mission.</h2>
+    <p class="section-intro reveal">Built for the 63 million Indian small businesses still running on paper. Configurable, deployable, and actually useful.</p>
+    <div class="products-grid">
+
+      <div class="product-card reveal">
+        <div class="product-icon">🏪</div>
+        <span class="product-tag">CRM Template</span>
+        <h3>Indian SME CRM Template</h3>
+        <p>Plug-and-play CRM for any Indian product business. Edit one config file with your business name and GSTIN — deploy in 5 minutes.</p>
+        <ul class="product-features">
+          <li><span class="feat-dot"></span>Stock manager with low-stock alerts & bulk import</li>
+          <li><span class="feat-dot"></span>GST-compliant PDF invoice generator</li>
+          <li><span class="feat-dot"></span>GSTR-1, GSTR-3B, TDS compliance calendar</li>
+          <li><span class="feat-dot"></span>Ad campaign tracker with ROI</li>
+          <li><span class="feat-dot"></span>Admin / Staff / Viewer role-based auth</li>
+          <li><span class="feat-dot"></span>WhatsApp + Gmail notification dispatch</li>
+        </ul>
+        <div class="product-links">
+          <a class="link-primary" href="https://sme-crm-demo.streamlit.app" target="_blank">Live Demo →</a>
+          <a class="link-ghost" href="https://github.com/challanamuskan/indian-sme-crm-template" target="_blank">GitHub</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-1">
+        <div class="product-icon">📬</div>
+        <span class="product-tag">Data Tool</span>
+        <h3>SME Inbox Parser</h3>
+        <p>Every Indian SME manages orders across 3 inboxes. Unify WhatsApp exports, Gmail threads, and website leads into one clean CSV.</p>
+        <ul class="product-features">
+          <li><span class="feat-dot"></span>WhatsApp .txt export parser (iOS + Android)</li>
+          <li><span class="feat-dot"></span>Gmail order thread extractor (OAuth 2.0)</li>
+          <li><span class="feat-dot"></span>Website contact form CSV auto-parser</li>
+          <li><span class="feat-dot"></span>Cross-source deduplication</li>
+          <li><span class="feat-dot"></span>Google Sheets push in one command</li>
+          <li><span class="feat-dot"></span>Drag-and-drop Streamlit UI + CLI</li>
+        </ul>
+        <div class="product-links">
+          <a class="link-primary" href="https://github.com/challanamuskan/sme-inbox-parser" target="_blank">View on GitHub →</a>
+        </div>
+      </div>
+
+      <div class="product-card reveal reveal-delay-2">
+        <div class="product-icon">📋</div>
+        <span class="product-tag">Curated List</span>
+        <h3>Awesome Indian SME Tools</h3>
+        <p>A curated directory of open-source tools, APIs, and libraries for developers building software for Indian small businesses.</p>
+        <ul class="product-features">
+          <li><span class="feat-dot"></span>GST & invoice compliance libraries</li>
+          <li><span class="feat-dot"></span>UPI, Razorpay, Cashfree SDKs</li>
+          <li><span class="feat-dot"></span>India Stack & GSTN API references</li>
+          <li><span class="feat-dot"></span>WhatsApp parsing & automation tools</li>
+          <li><span class="feat-dot"></span>Analytics & BI tools (self-hostable)</li>
+          <li><span class="feat-dot"></span>30+ tools across 10 categories</li>
+        </ul>
+        <div class="product-links">
+          <a class="link-primary" href="https://github.com/challanamuskan/awesome-indian-sme-tools" target="_blank">Browse List →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="demo" class="demo-section">
+  <div class="container">
+    <p class="section-label reveal">Live preview</p>
+    <h2 class="reveal">What a non-tech business owner actually sees</h2>
+    <p class="section-intro reveal">Not a wireframe. Not a screenshot. A working CRM dashboard — pre-loaded with a generic retail shop demo.</p>
+
+    <div class="demo-wrapper reveal">
+      <div class="demo-bar">
+        <div class="demo-dots"><span></span><span></span><span></span></div>
+        <div class="demo-url">sme-crm-demo.streamlit.app</div>
+      </div>
+      <div class="demo-content">
+        <div class="demo-header">
+          <div class="demo-title">📦 Demo Retail Shop — Dashboard</div>
+          <span class="demo-badge">● Live data</span>
+        </div>
+        <div class="demo-metrics">
+          <div class="metric-card">
+            <div class="metric-val">₹1,24,800</div>
+            <div class="metric-lbl">This month revenue</div>
+            <div class="metric-trend">↑ 12% vs last month</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">47</div>
+            <div class="metric-lbl">Orders this week</div>
+            <div class="metric-trend">↑ 8 new today</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">3</div>
+            <div class="metric-lbl">Low stock alerts</div>
+            <div class="metric-trend" style="color:#c62828">⚠ Action needed</div>
+          </div>
+          <div class="metric-card">
+            <div class="metric-val">7 days</div>
+            <div class="metric-lbl">Next GSTR-1 due</div>
+            <div class="metric-trend" style="color:#f57f17">⏰ File soon</div>
+          </div>
+        </div>
+        <div class="demo-table-wrap">
+          <table class="demo-table">
+            <thead><tr><th>Customer</th><th>Product</th><th>Amount</th><th>Date</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Ramesh Traders</td><td>Bearing Set × 5</td><td>₹12,500</td><td>Today</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+              <tr><td>Priya Stores</td><td>Cotton Fabric 50m</td><td>₹9,000</td><td>Yesterday</td><td><span class="status-badge status-pending">Pending</span></td></tr>
+              <tr><td>Kumar &amp; Co</td><td>Industrial Belt × 3</td><td>₹6,750</td><td>Apr 24</td><td><span class="status-badge status-paid">Paid</span></td></tr>
+              <tr><td>Sharma Hardware</td><td>Pulley Set × 2</td><td>₹4,200</td><td>Apr 23</td><td><span class="status-badge status-low">Overdue</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;margin-top:2rem;font-size:.875rem;color:var(--ink-light)">
+      Full interactive demo → <a href="https://sme-crm-demo.streamlit.app" target="_blank" style="color:var(--gold);text-decoration:none;font-weight:500">sme-crm-demo.streamlit.app ↗</a>
+    </p>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <p class="section-label reveal">Setup process</p>
+    <h2 class="reveal">From zero to live CRM in 30 minutes</h2>
+    <p class="section-intro reveal">No developer needed after setup. Any Indian SME owner can run this themselves.</p>
+    <div class="steps">
+      <div class="step reveal"><div class="step-num">1</div><div class="step-body"><h3>Fork the repo</h3><p>One click on GitHub. Your own copy of the CRM — forever free, no lock-in.</p></div></div>
+      <div class="step reveal reveal-delay-1"><div class="step-num">2</div><div class="step-body"><h3>Edit config.yaml</h3><p>Change your business name, GSTIN, currency, and toggle features on/off. No code — just a text file.</p></div></div>
+      <div class="step reveal reveal-delay-2"><div class="step-num">3</div><div class="step-body"><h3>Create free Supabase database</h3><p>2 minutes. Copy your URL and key. Run the seed SQL to create all tables.</p></div></div>
+      <div class="step reveal reveal-delay-3"><div class="step-num">4</div><div class="step-body"><h3>Deploy to Streamlit Cloud</h3><p>Connect your GitHub repo, paste 3 secrets, click Deploy. Live in 60 seconds.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <p class="section-label reveal">The builder</p>
+        <h2 class="reveal">Built by someone who's<br/>actually done it</h2>
+        <p class="section-intro reveal">I don't build demos. The Satyam Tex Fabb CRM is live and in daily use by a 30-year-old Jaipur textile business — saving 8+ hours of manual admin every week.</p>
+        <ul class="about-creds reveal">
+          <li><span class="cred-dot"></span>MCA Student — Vivekananda Global University, Jaipur (2028)</li>
+          <li><span class="cred-dot"></span>DPIIT-registered founder · 2 active paying clients</li>
+          <li><span class="cred-dot"></span>McKinsey Forward Certified · 4× Nestlé YEP Academy</li>
+          <li><span class="cred-dot"></span>Top 3 — IIM Rohtak National Competition</li>
+          <li><span class="cred-dot"></span>Applied: IIMA AI Residency · Google for Startups AI First India</li>
+        </ul>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <blockquote class="about-quote">
+          "What can AI actually fix for a small Indian business today?"
+          <cite>— Muskan Challana, AI Product Builder · Jaipur</cite>
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <p class="section-label" style="text-align:center">Get started</p>
+      <h2>Deploy your CRM today.</h2>
+      <p>Free, open-source, no vendor lock-in. Everything your business needs — nothing it doesn't.</p>
+      <div class="cta-links">
+        <a class="btn-primary" href="https://sme-crm-demo.streamlit.app" target="_blank">Try Live Demo →</a>
+        <a class="btn-secondary" href="https://github.com/challanamuskan/indian-sme-crm-template" target="_blank">Fork on GitHub</a>
+        <a class="btn-secondary" href="mailto:cmuskan2068@gmail.com">Hire me for your SME</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">Built by <a href="https://muskanchallana.vercel.app" target="_blank">Muskan Challana</a> · Jaipur, India · MIT License</div>
+  <div class="footer-right">
+    <a href="https://github.com/challanamuskan" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/muskan-challana-408234163/" target="_blank">LinkedIn</a>
+    <a href="mailto:cmuskan2068@gmail.com">Email</a>
+    <a href="https://muskanchallana.vercel.app" target="_blank">Portfolio</a>
+  </div>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible') });
+}, {threshold: 0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+window.addEventListener('scroll', () => {
+  document.querySelector('nav').style.padding = window.scrollY > 60 ? '.9rem 3rem' : '1.25rem 3rem';
+});
+</script>
+</body>
+</html>
