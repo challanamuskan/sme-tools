@@ -1,545 +1,698 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-<title>SME Tools — AI Infrastructure for Indian Businesses</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SME Growth Platform — Built for Indian Business</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#050508;
-  --cyan:#00f5ff;--cyan2:#00c8d4;
-  --purple:#b44fff;--purple2:#7c3aed;
-  --orange:#ff6b35;--orange2:#ff9a56;
-  --green:#00ff88;
-  --white:#ffffff;--off:#e8e8f0;
-  --muted:rgba(255,255,255,0.45);
-  --border:rgba(255,255,255,0.08);
-  --ff:'Space Grotesk',system-ui,sans-serif;
-  --fh:'Syne',system-ui,sans-serif;
+:root {
+  --saffron: #FF6B00;
+  --saffron-light: #FF9040;
+  --ink: #0D0D0D;
+  --cream: #FAF7F2;
+  --muted: #6B6560;
+  --border: #E8E3DC;
+  --green: #1A7A4A;
+  --blue: #1A3FAA;
 }
-html{scroll-behavior:smooth}
-body{font-family:var(--ff);background:var(--bg);color:var(--white);overflow-x:hidden;line-height:1.6}
 
-/* ── PARTICLES CANVAS ── */
-#particles{position:fixed;inset:0;z-index:0;pointer-events:none}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
 
 /* ── NAV ── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:1.1rem 4rem;display:flex;align-items:center;justify-content:space-between;background:rgba(5,5,8,.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
-.nav-logo{font-family:var(--fh);font-size:1.3rem;font-weight:800;color:var(--white);text-decoration:none;letter-spacing:-0.03em}
-.nav-logo .c1{color:var(--cyan)}.nav-logo .c2{color:var(--purple)}
-.nav-links{display:flex;gap:2.5rem;list-style:none}
-.nav-links a{font-size:.875rem;font-weight:500;color:var(--muted);text-decoration:none;transition:color .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--cyan);transition:width .3s}
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover::after{width:100%}
-.nav-pill{font-size:.8rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.55rem 1.4rem;border-radius:100px;background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--bg);text-decoration:none;transition:all .3s;box-shadow:0 0 20px rgba(0,245,255,.25)}
-.nav-pill:hover{transform:translateY(-2px);box-shadow:0 0 32px rgba(0,245,255,.45)}
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 2.5rem;
+  background: rgba(250,247,242,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--ink);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 0.5rem;
+}
+
+.flag { font-size: 1.2rem; }
+
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  font-size: 0.85rem; font-weight: 500; color: var(--muted);
+  text-decoration: none; letter-spacing: 0.02em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--saffron); }
+
+.nav-cta {
+  background: var(--ink); color: var(--cream) !important;
+  padding: 0.5rem 1.2rem; border-radius: 4px;
+}
+.nav-cta:hover { background: var(--saffron); color: var(--cream) !important; }
 
 /* ── HERO ── */
-.hero{min-height:100vh;display:flex;align-items:center;padding:9rem 4rem 6rem;position:relative;z-index:1}
-.hero-glow1{position:absolute;top:-10%;left:-10%;width:60%;height:70%;background:radial-gradient(ellipse,rgba(0,245,255,.07) 0%,transparent 60%);pointer-events:none;animation:pulse-glow 6s ease-in-out infinite}
-.hero-glow2{position:absolute;bottom:-10%;right:-5%;width:50%;height:60%;background:radial-gradient(ellipse,rgba(180,79,255,.07) 0%,transparent 60%);pointer-events:none;animation:pulse-glow 6s ease-in-out infinite reverse}
-@keyframes pulse-glow{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.05)}}
+.hero {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  padding: 8rem 2.5rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
 
-.hero-inner{max-width:820px;position:relative}
-.hero-chip{display:inline-flex;align-items:center;gap:.6rem;font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(0,245,255,.3);color:var(--cyan);padding:.4rem 1rem;border-radius:100px;margin-bottom:2.5rem;background:rgba(0,245,255,.05);animation:chip-in .8s ease both}
-@keyframes chip-in{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-.chip-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:chip-pulse 1.5s ease-in-out infinite;box-shadow:0 0 8px var(--cyan)}
-@keyframes chip-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.4);opacity:.6}}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(255,107,0,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 40% at 10% 80%, rgba(26,63,170,0.06) 0%, transparent 60%);
+}
 
-.hero h1{font-family:var(--fh);font-size:clamp(3.2rem,7.5vw,6.5rem);font-weight:800;line-height:1.0;letter-spacing:-0.04em;margin-bottom:1.75rem;overflow:hidden}
-.hero h1 .line{display:block;animation:slide-up .8s cubic-bezier(.16,1,.3,1) both}
-.hero h1 .line:nth-child(2){animation-delay:.12s}
-.hero h1 .line:nth-child(3){animation-delay:.24s}
-@keyframes slide-up{from{opacity:0;transform:translateY(60px)}to{opacity:1;transform:none}}
-.grad-text{background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 50%,var(--orange) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;background-size:200%;animation:grad-shift 4s linear infinite}
-@keyframes grad-shift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.hero-grid {
+  position: absolute; inset: 0; opacity: 0.03;
+  background-image: linear-gradient(var(--ink) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--ink) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
 
-.hero-sub{font-size:1.15rem;color:var(--muted);max-width:540px;line-height:1.8;margin-bottom:3rem;animation:slide-up .8s .35s cubic-bezier(.16,1,.3,1) both}
-.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;animation:slide-up .8s .45s cubic-bezier(.16,1,.3,1) both}
-.btn-glow{font-size:.9rem;font-weight:700;letter-spacing:.04em;padding:.95rem 2.4rem;border-radius:10px;background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--bg);text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem;position:relative;overflow:hidden}
-.btn-glow::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--purple),var(--orange));opacity:0;transition:opacity .3s}
-.btn-glow:hover::before{opacity:1}
-.btn-glow:hover{transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,245,255,.3)}
-.btn-glow span{position:relative;z-index:1}
-.btn-ghost{font-size:.9rem;font-weight:700;letter-spacing:.04em;padding:.95rem 2.4rem;border-radius:10px;border:1.5px solid var(--border);color:var(--muted);text-decoration:none;transition:all .3s;display:inline-flex;align-items:center;gap:.5rem}
-.btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:0 0 24px rgba(0,245,255,.15);transform:translateY(-2px)}
+.hero-inner {
+  max-width: 900px; text-align: center; position: relative; z-index: 1;
+}
 
-/* floating badge */
-.hero-float{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:1rem;animation:float-in 1s .6s ease both}
-@keyframes float-in{from{opacity:0;transform:translateY(-40%) translateX(40px)}to{opacity:1;transform:translateY(-50%) translateX(0)}}
-.fbadge{background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;min-width:160px;animation:float-bob 4s ease-in-out infinite}
-.fbadge:nth-child(2){animation-delay:1s}.fbadge:nth-child(3){animation-delay:2s}
-@keyframes float-bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.fbadge-val{font-family:var(--fh);font-size:1.6rem;font-weight:800;line-height:1}
-.fbadge-lbl{font-size:.7rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;margin-top:.25rem}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(255,107,0,0.08); border: 1px solid rgba(255,107,0,0.2);
+  color: var(--saffron); padding: 0.4rem 1rem;
+  border-radius: 100px; font-size: 0.78rem; font-weight: 500;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: fadeUp 0.6s ease both;
+}
 
-/* scroll hint */
-.scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2);z-index:1}
-.scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--cyan),transparent);animation:scroll-anim 2s ease-in-out infinite}
-@keyframes scroll-anim{0%{transform:scaleY(0);transform-origin:top;opacity:0}40%{opacity:1}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom;opacity:0}}
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
 
-/* ── MARQUEE ── */
-.marquee-section{padding:.9rem 0;background:linear-gradient(90deg,var(--cyan2),var(--purple2));overflow:hidden;position:relative;z-index:1}
-.marquee-track{display:flex;gap:3rem;white-space:nowrap;animation:marquee-scroll 18s linear infinite}
-.marquee-item{font-family:var(--fh);font-size:.85rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:rgba(0,0,0,.75)}
-.marquee-dot{font-size:1.4rem;color:rgba(0,0,0,.3);line-height:1}
-@keyframes marquee-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+h1 em {
+  font-style: normal;
+  color: var(--saffron);
+  position: relative;
+}
 
-/* ── STATS ── */
-.stats-section{padding:5rem 4rem;position:relative;z-index:1;border-bottom:1px solid var(--border)}
-.stats-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.stat-item{text-align:center;padding:2rem;border-right:1px solid var(--border);position:relative}
-.stat-item:last-child{border-right:none}
-.stat-item::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));transition:width .5s;border-radius:1px}
-.stat-item:hover::after{width:60%}
-.stat-num{font-family:var(--fh);font-size:3.8rem;font-weight:800;line-height:1;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.stat-label{font-size:.75rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.5rem}
+.hero-sub {
+  font-size: 1.15rem; color: var(--muted); max-width: 580px; margin: 0 auto 2.5rem;
+  line-height: 1.7; font-weight: 400;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
 
-/* ── SECTIONS ── */
-section.light-section{padding:7rem 4rem;background:var(--bg);position:relative;z-index:1}
-.container{max-width:1100px;margin:0 auto}
-.tag-pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,245,255,.25);background:rgba(0,245,255,.06);padding:.3rem .9rem;border-radius:100px;margin-bottom:1.25rem}
-.section-h2{font-family:var(--fh);font-size:clamp(2.4rem,5vw,3.8rem);font-weight:800;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1.5rem}
-.section-h2 .c{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.section-sub{font-size:1rem;color:var(--muted);max-width:480px;line-height:1.8}
+.hero-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
 
-/* ── PRODUCT CARDS ── */
-.cards-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:4rem;flex-wrap:wrap;gap:2rem}
-.products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
-.pcard{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:2.5rem;transition:all .4s cubic-bezier(.16,1,.3,1);display:flex;flex-direction:column;gap:1.5rem;position:relative;overflow:hidden;cursor:default}
-.pcard::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,245,255,.04),rgba(180,79,255,.04));opacity:0;transition:opacity .4s}
-.pcard::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,1,.3,1)}
-.pcard:hover{transform:translateY(-10px);border-color:rgba(0,245,255,.3);box-shadow:0 30px 60px rgba(0,245,255,.08),0 0 0 1px rgba(0,245,255,.1)}
-.pcard:hover::before{opacity:1}
-.pcard:hover::after{transform:scaleX(1)}
-.pcard-num{font-family:var(--fh);font-size:4rem;font-weight:800;line-height:1;background:linear-gradient(135deg,rgba(0,245,255,.15),rgba(180,79,255,.15));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;transition:all .4s;letter-spacing:-0.04em}
-.pcard:hover .pcard-num{background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;background-clip:text}
-.pcard-badge{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:.25rem .75rem;border-radius:100px;display:inline-block}
-.b-cyan{color:var(--cyan);background:rgba(0,245,255,.1);border:1px solid rgba(0,245,255,.2)}
-.b-purple{color:var(--purple);background:rgba(180,79,255,.1);border:1px solid rgba(180,79,255,.2)}
-.b-orange{color:var(--orange2);background:rgba(255,107,53,.1);border:1px solid rgba(255,107,53,.2)}
-.pcard h3{font-family:var(--fh);font-size:1.35rem;font-weight:700;letter-spacing:-0.02em;line-height:1.3}
-.pcard p{font-size:.875rem;color:var(--muted);line-height:1.75;flex:1}
-.feat-list{list-style:none;display:flex;flex-direction:column;gap:.35rem}
-.feat-list li{font-size:.8rem;color:rgba(255,255,255,.5);display:flex;align-items:flex-start;gap:.6rem;padding:.3rem 0;border-bottom:1px solid rgba(255,255,255,.05);line-height:1.5}
-.feat-list li:last-child{border-bottom:none}
-.feat-check{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));flex-shrink:0;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.feat-check::after{content:'✓';font-size:8px;color:var(--bg);font-weight:900;line-height:1}
-.pcard-links{display:flex;gap:.6rem;flex-wrap:wrap}
-.pl-primary{font-size:.78rem;font-weight:700;padding:.5rem 1.2rem;border-radius:8px;background:linear-gradient(135deg,var(--cyan),var(--purple));color:var(--bg);text-decoration:none;transition:all .3s}
-.pl-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,245,255,.25)}
-.pl-ghost{font-size:.78rem;font-weight:700;padding:.5rem 1.2rem;border-radius:8px;border:1px solid var(--border);color:var(--muted);text-decoration:none;transition:all .3s}
-.pl-ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn-primary {
+  background: var(--saffron); color: white;
+  padding: 0.9rem 2rem; border-radius: 6px;
+  font-weight: 600; font-size: 0.95rem; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(255,107,0,0.3);
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(255,107,0,0.4); }
 
-/* ── DEMO MOCKUP ── */
-.demo-frame{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.05);margin-top:4rem;animation:frame-float 6s ease-in-out infinite}
-@keyframes frame-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.frame-bar{background:rgba(255,255,255,.04);padding:.9rem 1.5rem;display:flex;align-items:center;gap:1rem;border-bottom:1px solid var(--border)}
-.frame-dots{display:flex;gap:.4rem}
-.frame-dots span{width:11px;height:11px;border-radius:50%}
-.frame-dots span:nth-child(1){background:#ff5f57}
-.frame-dots span:nth-child(2){background:#febc2e}
-.frame-dots span:nth-child(3){background:#28c840}
-.frame-url{flex:1;background:rgba(255,255,255,.04);border-radius:6px;padding:.3rem 1rem;font-size:.72rem;font-family:monospace;color:rgba(255,255,255,.3);border:1px solid var(--border)}
-.frame-body{display:grid;grid-template-columns:200px 1fr}
-.frame-nav{background:rgba(0,0,0,.3);padding:1.25rem .75rem;border-right:1px solid var(--border)}
-.fnav-label{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.2);padding:.4rem .6rem;margin-bottom:.25rem}
-.fnav-item{display:flex;align-items:center;gap:.6rem;padding:.5rem .75rem;border-radius:6px;font-size:.78rem;color:rgba(255,255,255,.4);margin-bottom:.1rem;cursor:pointer;transition:all .2s}
-.fnav-item.on,.fnav-item:hover{background:linear-gradient(90deg,rgba(0,245,255,.12),transparent);color:var(--cyan)}
-.fnav-dot{width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;opacity:.6}
-.frame-content{padding:1.5rem;background:rgba(0,0,0,.2)}
-.fc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
-.fc-title{font-family:var(--fh);font-size:1rem;font-weight:700;color:rgba(255,255,255,.85)}
-.live-dot{font-size:.65rem;font-weight:700;padding:.25rem .75rem;border-radius:100px;background:rgba(0,255,136,.1);color:var(--green);border:1px solid rgba(0,255,136,.2);letter-spacing:.06em}
-.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.6rem;margin-bottom:1.25rem}
-.kpi{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:8px;padding:.8rem .9rem}
-.kpi-val{font-family:var(--fh);font-size:1.2rem;font-weight:800;line-height:1;color:var(--white)}
-.kpi-lbl{font-size:.6rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:.25rem}
-.kpi-trend{font-size:.68rem;font-weight:600;margin-top:.2rem}
-.t-up{color:var(--green)}.t-mid{color:#febc2e}.t-dn{color:#ff5f57}
-.table-wrap{background:rgba(0,0,0,.2);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.t-head{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;padding:.5rem 1rem;gap:.75rem;background:rgba(255,255,255,.03)}
-.t-head span{font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.2)}
-.t-row{display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr;padding:.6rem 1rem;gap:.75rem;border-top:1px solid rgba(255,255,255,.04);align-items:center}
-.t-row span{font-size:.75rem;color:rgba(255,255,255,.5)}
-.t-row .t-name{color:rgba(255,255,255,.85);font-weight:500}
-.pill{font-size:.6rem;font-weight:700;padding:.18rem .55rem;border-radius:100px}
-.p-g{background:rgba(0,255,136,.1);color:var(--green)}
-.p-a{background:rgba(254,188,46,.1);color:#febc2e}
-.p-r{background:rgba(255,95,87,.1);color:#ff5f57}
+.btn-secondary {
+  background: transparent; color: var(--ink);
+  padding: 0.9rem 2rem; border-radius: 6px;
+  font-weight: 500; font-size: 0.95rem; text-decoration: none;
+  border: 1.5px solid var(--border);
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-secondary:hover { border-color: var(--ink); }
 
-/* ── STEPS ── */
-.steps-section{padding:7rem 4rem;background:rgba(0,0,0,.5);border-top:1px solid var(--border);border-bottom:1px solid var(--border);position:relative;z-index:1}
-.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:4rem;position:relative}
-.steps-line{position:absolute;top:32px;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),var(--purple),var(--orange),transparent);z-index:0;animation:line-pulse 3s ease-in-out infinite}
-@keyframes line-pulse{0%,100%{opacity:.4}50%{opacity:1}}
-.step{text-align:center;padding:0 1.5rem;position:relative;z-index:1}
-.step-orb{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--cyan),var(--purple));display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-family:var(--fh);font-size:1.2rem;font-weight:800;color:var(--bg);box-shadow:0 0 0 8px rgba(0,245,255,.08),0 8px 24px rgba(0,245,255,.25);transition:all .3s}
-.step:hover .step-orb{transform:scale(1.1);box-shadow:0 0 0 12px rgba(0,245,255,.12),0 12px 32px rgba(0,245,255,.4)}
-.step-t{font-family:var(--fh);font-size:1rem;font-weight:700;margin-bottom:.5rem;color:var(--white)}
-.step-d{font-size:.82rem;color:var(--muted);line-height:1.65}
+.hero-stat-row {
+  display: flex; gap: 2.5rem; justify-content: center; margin-top: 3.5rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.4s ease both;
+}
 
-/* ── ABOUT ── */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center}
-.creds-list{list-style:none;margin-top:2rem;display:flex;flex-direction:column;gap:.6rem}
-.creds-list li{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:rgba(255,255,255,.5)}
-.cred-bar{width:24px;height:2px;border-radius:1px;background:linear-gradient(90deg,var(--cyan),var(--purple));flex-shrink:0}
-.quote-card{background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:16px;padding:2.5rem;border-left:3px solid;border-image:linear-gradient(to bottom,var(--cyan),var(--purple)) 1}
-.quote-q{font-family:var(--fh);font-size:5rem;font-weight:800;line-height:.7;color:var(--cyan);opacity:.3;margin-bottom:.5rem}
-.quote-t{font-family:var(--fh);font-size:1.45rem;font-weight:700;line-height:1.35;color:var(--white);margin-bottom:1.25rem;letter-spacing:-0.02em}
-.quote-c{font-size:.75rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}
-.about-btns{margin-top:2rem;display:flex;gap:.75rem;flex-wrap:wrap}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800;
+  color: var(--ink);
+}
+.hero-stat-label { font-size: 0.78rem; color: var(--muted); margin-top: 0.2rem; }
 
-/* ── CTA ── */
-.cta-section{padding:8rem 4rem;text-align:center;position:relative;z-index:1;overflow:hidden}
-.cta-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(0,245,255,.06) 0%,rgba(180,79,255,.04) 50%,transparent 70%);pointer-events:none;animation:pulse-glow 4s ease-in-out infinite}
-.cta-h2{font-family:var(--fh);font-size:clamp(3rem,6vw,5rem);font-weight:800;letter-spacing:-0.04em;line-height:1.05;margin-bottom:1.25rem;position:relative}
-.cta-sub{font-size:1.05rem;color:var(--muted);margin-bottom:3rem;position:relative}
-.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+/* ── PILLARS ── */
+.section {
+  padding: 6rem 2.5rem;
+  max-width: 1100px; margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--saffron);
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800; line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  color: var(--muted); font-size: 1rem; max-width: 520px; line-height: 1.7;
+  margin-bottom: 3.5rem;
+}
+
+/* ── PILLAR GRID ── */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5px;
+  background: var(--border);
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pillar-card {
+  background: var(--cream);
+  padding: 2rem;
+  transition: background 0.2s;
+  cursor: default;
+}
+
+.pillar-card:hover { background: white; }
+
+.pillar-icon {
+  font-size: 2rem; margin-bottom: 1rem;
+  display: block;
+}
+
+.pillar-name {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700; font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.pillar-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+.pillar-tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem;
+}
+
+.tag {
+  font-size: 0.7rem; padding: 0.2rem 0.6rem;
+  border-radius: 100px; background: rgba(255,107,0,0.08);
+  color: var(--saffron); font-weight: 500;
+}
+
+/* ── MODULES TABLE ── */
+.modules-section {
+  background: var(--ink);
+  padding: 6rem 2.5rem;
+  color: var(--cream);
+}
+
+.modules-inner { max-width: 1100px; margin: 0 auto; }
+
+.modules-section .section-label { color: var(--saffron-light); }
+.modules-section .section-title { color: var(--cream); }
+.modules-section .section-sub { color: rgba(250,247,242,0.55); }
+
+.modules-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; overflow: hidden;
+}
+
+.module-item {
+  padding: 1.5rem;
+  background: rgba(13,13,13,0.95);
+  transition: background 0.2s;
+}
+
+.module-item:hover { background: rgba(255,107,0,0.08); }
+
+.module-emoji { font-size: 1.4rem; display: block; margin-bottom: 0.6rem; }
+.module-name {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.9rem; margin-bottom: 0.3rem;
+  color: var(--cream);
+}
+.module-desc { font-size: 0.78rem; color: rgba(250,247,242,0.45); line-height: 1.5; }
+
+/* ── WHO ── */
+.who-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.who-card {
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.who-card:hover { border-color: var(--saffron); transform: translateY(-3px); }
+
+.who-icon { font-size: 1.8rem; margin-bottom: 0.8rem; display: block; }
+.who-type { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.9rem; margin-bottom: 0.4rem; }
+.who-detail { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+/* ── TESTIMONIAL ── */
+.testimonial-section {
+  background: white;
+  border-top: 1.5px solid var(--border);
+  border-bottom: 1.5px solid var(--border);
+  padding: 5rem 2.5rem;
+}
+
+.testimonial-inner {
+  max-width: 700px; margin: 0 auto; text-align: center;
+}
+
+blockquote {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.2rem, 3vw, 1.9rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--ink);
+  margin-bottom: 1.5rem;
+}
+
+blockquote span { color: var(--saffron); }
+
+.testimonial-source { font-size: 0.85rem; color: var(--muted); }
+
+/* ── DEPLOY ── */
+.deploy-steps {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.deploy-step {
+  display: flex; gap: 1rem; align-items: flex-start;
+}
+
+.step-num {
+  flex-shrink: 0;
+  width: 2.2rem; height: 2.2rem;
+  background: var(--saffron); color: white;
+  border-radius: 6px;
+  display: grid; place-items: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem;
+}
+
+.step-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 0.3rem; }
+.step-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+/* ── REPOS ── */
+.repos-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.2rem;
+}
+
+.repo-card {
+  border: 1.5px solid var(--border);
+  border-radius: 10px; padding: 1.5rem;
+  text-decoration: none; color: inherit;
+  display: block;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.repo-card:hover {
+  border-color: var(--saffron);
+  box-shadow: 0 4px 20px rgba(255,107,0,0.1);
+}
+
+.repo-icon { font-size: 1.5rem; margin-bottom: 0.8rem; display: block; }
+.repo-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem; }
+.repo-org { font-size: 0.75rem; color: var(--saffron); margin-bottom: 0.8rem; }
+.repo-desc { font-size: 0.82rem; color: var(--muted); line-height: 1.55; }
 
 /* ── FOOTER ── */
-footer{padding:2rem 4rem;background:rgba(0,0,0,.5);border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;z-index:1}
-.footer-logo{font-family:var(--fh);font-size:1rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.footer-copy{font-size:.75rem;color:rgba(255,255,255,.25)}
-.footer-copy a{color:var(--cyan);text-decoration:none}
-.footer-links{display:flex;gap:1.5rem}
-.footer-links a{font-size:.75rem;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:var(--cyan)}
+footer {
+  border-top: 1.5px solid var(--border);
+  padding: 2.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 1rem;
+}
 
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
-.rv.show{opacity:1;transform:none}
-.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+.footer-left { font-size: 0.82rem; color: var(--muted); }
+.footer-links { display: flex; gap: 1.5rem; }
+.footer-links a { font-size: 0.82rem; color: var(--muted); text-decoration: none; }
+.footer-links a:hover { color: var(--saffron); }
 
-@media(max-width:900px){
-  nav{padding:1rem 1.5rem}.nav-links{display:none}
-  .hero{padding:7rem 1.5rem 5rem}.hero-float{display:none}
-  section.light-section,.stats-section,.steps-section,.about-section,.cta-section{padding:5rem 1.5rem}
-  .products-grid,.steps-grid,.about-grid,.stats-grid{grid-template-columns:1fr}
-  .stat-item{border-right:none;border-bottom:1px solid var(--border)}
-  .frame-body{grid-template-columns:1fr}.frame-nav{display:none}
-  .kpi-row{grid-template-columns:repeat(2,1fr)}
-  footer{padding:1.5rem;flex-direction:column;text-align:center}
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── DIVIDER ── */
+.section-divider {
+  height: 1.5px; background: var(--border);
+  max-width: 1100px; margin: 0 auto;
+}
+
+@media (max-width: 640px) {
+  nav { padding: 1rem 1.2rem; }
+  .nav-links { display: none; }
+  .hero { padding: 6rem 1.2rem 3rem; }
+  .section { padding: 4rem 1.2rem; }
+  .modules-section, .testimonial-section { padding: 4rem 1.2rem; }
+  footer { flex-direction: column; padding: 2rem 1.2rem; }
+  .hero-stat-row { gap: 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<canvas id="particles"></canvas>
-
 <!-- NAV -->
-<nav id="nav">
-  <a class="nav-logo" href="#"><span class="c1">SME</span><span class="c2">Tools</span></a>
+<nav>
+  <a href="#" class="nav-logo"><span class="flag">🇮🇳</span> SME Growth Platform</a>
   <ul class="nav-links">
-    <li><a href="#tools">Tools</a></li>
-    <li><a href="#demo">Demo</a></li>
-    <li><a href="#about">Builder</a></li>
+    <li><a href="#pillars">What We Build</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#deploy">Deploy</a></li>
+    <li><a href="#repos">Open Source</a></li>
+    <li><a href="https://crm-template.streamlit.app" class="nav-cta">Live Demo →</a></li>
   </ul>
-  <a class="nav-pill" href="https://crm-template.streamlit.app" target="_blank">Try Demo →</a>
 </nav>
 
 <!-- HERO -->
-<section class="hero" id="hero">
-  <div class="hero-glow1"></div>
-  <div class="hero-glow2"></div>
+<section class="hero">
+  <div class="hero-grid"></div>
   <div class="hero-inner">
-    <div class="hero-chip"><span class="chip-dot"></span>Open Source · Free Forever · Built for India 🇮🇳</div>
-    <h1>
-      <span class="line">Stop running your</span>
-      <span class="line">business on</span>
-      <span class="line"><span class="grad-text">WhatsApp threads.</span></span>
-    </h1>
-    <p class="hero-sub">63 million Indian SMEs run on paper registers and chat exports. These open-source tools change that — deployed in minutes, not months.</p>
-    <div class="hero-btns">
-      <a class="btn-glow" href="https://crm-template.streamlit.app" target="_blank"><span>See Live CRM →</span></a>
-      <a class="btn-ghost" href="https://github.com/challanamuskan" target="_blank">GitHub ↗</a>
+    <div class="hero-badge">🇮🇳 Built for Indian Business · DPIIT Registered</div>
+    <h1>Your Business Deserves a<br><em>Real Growth OS</em></h1>
+    <p class="hero-sub">
+      CRM, marketing, finance, supply chain, content, and global reach —
+      one open-source platform built for 63 million Indian SMEs who deserve better than WhatsApp threads.
+    </p>
+    <div class="hero-actions">
+      <a href="https://crm-template.streamlit.app" class="btn-primary">See Live Demo →</a>
+      <a href="https://github.com/challanamuskan/indian-sme-crm-template" class="btn-secondary">GitHub ↗</a>
+    </div>
+    <div class="hero-stat-row">
+      <div class="hero-stat">
+        <div class="hero-stat-num">21+</div>
+        <div class="hero-stat-label">Modules</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">8</div>
+        <div class="hero-stat-label">Growth Pillars</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">30min</div>
+        <div class="hero-stat-label">To Deploy</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">₹0</div>
+        <div class="hero-stat-label">License Cost</div>
+      </div>
     </div>
   </div>
-  <div class="hero-float">
-    <div class="fbadge"><div class="fbadge-val" style="color:var(--cyan)">₹67K+</div><div class="fbadge-lbl">Revenue tracked</div></div>
-    <div class="fbadge"><div class="fbadge-val" style="color:var(--purple)">8h+</div><div class="fbadge-lbl">Admin saved/week</div></div>
-    <div class="fbadge"><div class="fbadge-val" style="color:var(--orange2)">2</div><div class="fbadge-lbl">Live clients</div></div>
-  </div>
-  <div class="scroll-hint"><div class="scroll-line"></div>scroll</div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <span class="marquee-item">GST Invoices</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">WhatsApp Parser</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Compliance Calendar</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Business Intelligence</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Smart Reminders</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ad ROI Tracker</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Stock Manager</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Email Follow-ups</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Promotions Builder</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Website Manager</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">GST Invoices</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">WhatsApp Parser</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Compliance Calendar</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Business Intelligence</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Smart Reminders</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Ad ROI Tracker</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Stock Manager</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Email Follow-ups</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Promotions Builder</span><span class="marquee-dot">·</span>
-    <span class="marquee-item">Website Manager</span><span class="marquee-dot">·</span>
+<!-- PILLARS -->
+<section class="section" id="pillars">
+  <div class="reveal">
+    <p class="section-label">What We Build</p>
+    <h2 class="section-title">8 Pillars of<br>Business Growth</h2>
+    <p class="section-sub">Most Indian SME tools solve one problem. We cover the whole business — because growth doesn't happen in silos.</p>
   </div>
-</div>
 
-<!-- STATS -->
-<div class="stats-section">
-  <div class="stats-grid" id="stats-grid">
-    <div class="stat-item rv"><div class="stat-num" data-val="3">0</div><div class="stat-label">Open-source tools</div></div>
-    <div class="stat-item rv d1"><div class="stat-num" data-val="2">0</div><div class="stat-label">Live paying clients</div></div>
-    <div class="stat-item rv d2"><div class="stat-num" data-val="8" data-sfx="h+">0</div><div class="stat-label">Admin saved weekly</div></div>
-    <div class="stat-item rv d3"><div class="stat-num" data-val="63" data-sfx="M">0</div><div class="stat-label">SMEs in India</div></div>
+  <div class="pillars-grid reveal">
+    <div class="pillar-card">
+      <span class="pillar-icon">📊</span>
+      <div class="pillar-name">CRM & Customer Management</div>
+      <div class="pillar-desc">Full customer lifecycle — leads, orders, payments, follow-ups, WhatsApp integration. Know every customer, every order, every rupee owed.</div>
+      <div class="pillar-tags"><span class="tag">Customers</span><span class="tag">Invoices</span><span class="tag">Follow-ups</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">📣</span>
+      <div class="pillar-name">Marketing & Growth</div>
+      <div class="pillar-desc">WhatsApp broadcasts, Instagram ROI, Google Ads tracking, seasonal campaign calendar. Multi-channel marketing built for Indian SME budgets.</div>
+      <div class="pillar-tags"><span class="tag">WhatsApp</span><span class="tag">Ad Tracker</span><span class="tag">ROI</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">⚖️</span>
+      <div class="pillar-name">Finance & Accounting</div>
+      <div class="pillar-desc">GST invoices, GSTR deadlines, TDS tracker, P&L dashboard. Stay compliant without hiring an in-house accountant for basics.</div>
+      <div class="pillar-tags"><span class="tag">GST</span><span class="tag">Invoices</span><span class="tag">P&L</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">🚚</span>
+      <div class="pillar-name">Supply Chain & Inventory</div>
+      <div class="pillar-desc">Live stock tracker, supplier management, purchase orders, e-Way bill checker. From supplier to customer — fully visible.</div>
+      <div class="pillar-tags"><span class="tag">Stock</span><span class="tag">Suppliers</span><span class="tag">e-Way</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">📝</span>
+      <div class="pillar-name">Content & Communication</div>
+      <div class="pillar-desc">WhatsApp templates, email shortcuts, offer builder, Indian festival calendar. Communicate faster and more professionally every day.</div>
+      <div class="pillar-tags"><span class="tag">Templates</span><span class="tag">Offers</span><span class="tag">Seasonal</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">🌏</span>
+      <div class="pillar-name">Global Connection & Export</div>
+      <div class="pillar-desc">INR↔USD/EUR rates, export compliance checklist, IEC guidance, IndiaMart lead import, shipment tracking. Grow beyond India.</div>
+      <div class="pillar-tags"><span class="tag">Export</span><span class="tag">Currency</span><span class="tag">IndiaMart</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">🤖</span>
+      <div class="pillar-name">AI-Powered Intelligence</div>
+      <div class="pillar-desc">Smart reminders from live data, Business Health Score (0–100), AI business summaries, BI dashboards that tell you what to do next.</div>
+      <div class="pillar-tags"><span class="tag">AI Insights</span><span class="tag">Health Score</span><span class="tag">BI</span></div>
+    </div>
+    <div class="pillar-card">
+      <span class="pillar-icon">🏢</span>
+      <div class="pillar-name">Operations & Staff</div>
+      <div class="pillar-desc">Attendance, task assignment, role-based access. Admin, staff, and viewer permissions. Run your back office without the paperwork.</div>
+      <div class="pillar-tags"><span class="tag">Staff</span><span class="tag">Roles</span><span class="tag">Tasks</span></div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- TOOLS -->
-<section class="light-section" id="tools">
-  <div class="container">
-    <div class="cards-header">
+<div class="section-divider"></div>
+
+<!-- MODULES -->
+<section class="modules-section" id="modules">
+  <div class="modules-inner">
+    <div class="reveal">
+      <p class="section-label">All Modules</p>
+      <h2 class="section-title">21 Modules.<br>One Platform.</h2>
+      <p class="section-sub">Every module is live, deployable, and customisable via a single config file.</p>
+    </div>
+
+    <div class="modules-grid reveal">
+      <div class="module-item"><span class="module-emoji">📦</span><div class="module-name">Stock Tracker</div><div class="module-desc">Live inventory, low-stock alerts, bulk import</div></div>
+      <div class="module-item"><span class="module-emoji">👥</span><div class="module-name">Customer CRM</div><div class="module-desc">Profiles, history, lifecycle stage, payment health</div></div>
+      <div class="module-item"><span class="module-emoji">💰</span><div class="module-name">GST Invoices</div><div class="module-desc">CGST/SGST/IGST PDF, downloadable, stored</div></div>
+      <div class="module-item"><span class="module-emoji">📱</span><div class="module-name">WhatsApp Orders</div><div class="module-desc">Upload chat → auto-extract orders + amounts</div></div>
+      <div class="module-item"><span class="module-emoji">📧</span><div class="module-name">Email Tracker</div><div class="module-desc">Gmail shortcuts, templates, follow-up log</div></div>
+      <div class="module-item"><span class="module-emoji">📣</span><div class="module-name">Ad Tracker</div><div class="module-desc">Campaign log, budget vs spend, ROI per channel</div></div>
+      <div class="module-item"><span class="module-emoji">🌐</span><div class="module-name">Website Manager</div><div class="module-desc">Uptime, leads capture, analytics embed, SEO</div></div>
+      <div class="module-item"><span class="module-emoji">⚖️</span><div class="module-name">Compliance Calendar</div><div class="module-desc">GSTR-1, GSTR-3B, TDS, e-Way, GST rate finder</div></div>
+      <div class="module-item"><span class="module-emoji">📊</span><div class="module-name">Business Intelligence</div><div class="module-desc">Revenue trends, top customers, payment health</div></div>
+      <div class="module-item"><span class="module-emoji">🔔</span><div class="module-name">Smart Reminders</div><div class="module-desc">AI-generated action items from live data</div></div>
+      <div class="module-item"><span class="module-emoji">🏥</span><div class="module-name">Health Score</div><div class="module-desc">0–100 business score across all dimensions</div></div>
+      <div class="module-item"><span class="module-emoji">🎯</span><div class="module-name">Promotions Engine</div><div class="module-desc">WhatsApp broadcast, offer builder, festivals</div></div>
+      <div class="module-item"><span class="module-emoji">🚚</span><div class="module-name">Supply Chain</div><div class="module-desc">Suppliers, POs, receiving, e-Way check</div></div>
+      <div class="module-item"><span class="module-emoji">📈</span><div class="module-name">Finance P&L</div><div class="module-desc">Monthly revenue, cost, margin — no accountant</div></div>
+      <div class="module-item"><span class="module-emoji">📝</span><div class="module-name">Content Hub</div><div class="module-desc">Templates, seasonal calendar, message bank</div></div>
+      <div class="module-item"><span class="module-emoji">🌏</span><div class="module-name">Global Export Tools</div><div class="module-desc">Currency, IEC checklist, IndiaMart leads</div></div>
+      <div class="module-item"><span class="module-emoji">💳</span><div class="module-name">Payment Tracker</div><div class="module-desc">UPI, bank, cash — overdue alerts</div></div>
+      <div class="module-item"><span class="module-emoji">🧾</span><div class="module-name">Purchase Orders</div><div class="module-desc">PO creation, receiving, supplier payment log</div></div>
+      <div class="module-item"><span class="module-emoji">🏢</span><div class="module-name">Staff & MIS</div><div class="module-desc">Attendance, tasks, role management</div></div>
+      <div class="module-item"><span class="module-emoji">🔐</span><div class="module-name">Role-Based Auth</div><div class="module-desc">Admin / Staff / Viewer — Streamlit secrets</div></div>
+      <div class="module-item"><span class="module-emoji">⚙️</span><div class="module-name">Config YAML</div><div class="module-desc">Single file customisation — name, GSTIN, features</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="section" id="who">
+  <div class="reveal">
+    <p class="section-label">Who It's For</p>
+    <h2 class="section-title">Built for Every<br>Indian Business</h2>
+    <p class="section-sub">From your first shop to a portfolio of businesses — this platform scales with you.</p>
+  </div>
+
+  <div class="who-grid reveal">
+    <div class="who-card">
+      <span class="who-icon">🏭</span>
+      <div class="who-type">Textile / Manufacturing</div>
+      <div class="who-detail">Stock, GST Invoices, Compliance, WhatsApp Orders</div>
+    </div>
+    <div class="who-card">
+      <span class="who-icon">🛒</span>
+      <div class="who-type">Retail / Wholesale</div>
+      <div class="who-detail">CRM, Promotions, Ad Tracker, Payment Tracker</div>
+    </div>
+    <div class="who-card">
+      <span class="who-icon">📦</span>
+      <div class="who-type">Trading / Export</div>
+      <div class="who-detail">Supply Chain, Global Export, Finance P&L</div>
+    </div>
+    <div class="who-card">
+      <span class="who-icon">💼</span>
+      <div class="who-type">Services / Consulting</div>
+      <div class="who-detail">Email Tracker, CRM, Business Intelligence</div>
+    </div>
+    <div class="who-card">
+      <span class="who-icon">💰</span>
+      <div class="who-type">HNI Portfolio</div>
+      <div class="who-detail">BI Dashboard, P&L, Multi-location Stock</div>
+    </div>
+    <div class="who-card">
+      <span class="who-icon">🚀</span>
+      <div class="who-type">Growing SMEs</div>
+      <div class="who-detail">All 8 pillars — scale without scaling costs</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial-section">
+  <div class="testimonial-inner reveal">
+    <blockquote>
+      "This CRM saves our team <span>significant hours every week</span> — WhatsApp order entry alone used to take 2 hours daily."
+    </blockquote>
+    <div class="testimonial-source">
+      Live client · Textile machinery business · Jaipur · 2000+ products · Active deployment
+    </div>
+  </div>
+</section>
+
+<!-- DEPLOY -->
+<section class="section" id="deploy">
+  <div class="reveal">
+    <p class="section-label">Deploy</p>
+    <h2 class="section-title">Live in 30 Minutes.<br>Free Forever.</h2>
+    <p class="section-sub">Fork, configure, deploy. No cloud contracts. No per-seat pricing. No vendor lock-in.</p>
+  </div>
+
+  <div class="deploy-steps reveal">
+    <div class="deploy-step">
+      <div class="step-num">1</div>
       <div>
-        <div class="tag-pill rv">Open-source tools</div>
-        <h2 class="section-h2 rv">Three tools.<br/><span class="c">One mission.</span></h2>
-      </div>
-      <p class="section-sub rv">Built for Indian businesses still on paper. Configurable, free, no lock-in.</p>
-    </div>
-    <div class="products-grid">
-      <div class="pcard rv">
-        <div class="pcard-num">01</div>
-        <span class="pcard-badge b-cyan">CRM Template</span>
-        <h3>Indian SME CRM Template</h3>
-        <p>Plug-and-play CRM for any Indian product business. Edit one config file — deployed in 5 minutes.</p>
-        <ul class="feat-list">
-          <li><span class="feat-check"></span>Stock manager with low-stock alerts</li>
-          <li><span class="feat-check"></span>GST-compliant PDF invoice generator</li>
-          <li><span class="feat-check"></span>GSTR-1, GSTR-3B, TDS compliance calendar</li>
-          <li><span class="feat-check"></span>WhatsApp broadcast + offer builder</li>
-          <li><span class="feat-check"></span>Business health score + smart reminders</li>
-          <li><span class="feat-check"></span>Admin / Staff / Viewer role-based auth</li>
-        </ul>
-        <div class="pcard-links">
-          <a class="pl-primary" href="https://crm-template.streamlit.app" target="_blank">Live Demo →</a>
-          <a class="pl-ghost" href="https://github.com/challanamuskan/indian-sme-crm-template" target="_blank">GitHub</a>
-        </div>
-      </div>
-      <div class="pcard rv d1">
-        <div class="pcard-num">02</div>
-        <span class="pcard-badge b-purple">Data Tool</span>
-        <h3>SME Inbox Parser</h3>
-        <p>Every Indian SME manages orders across 3 inboxes. Unify WhatsApp, Gmail, website leads into one CSV.</p>
-        <ul class="feat-list">
-          <li><span class="feat-check"></span>WhatsApp .txt parser (iOS + Android)</li>
-          <li><span class="feat-check"></span>Gmail order thread extractor (OAuth)</li>
-          <li><span class="feat-check"></span>Website contact form CSV auto-parser</li>
-          <li><span class="feat-check"></span>Cross-source deduplication</li>
-          <li><span class="feat-check"></span>Google Sheets push in one command</li>
-          <li><span class="feat-check"></span>Drag-and-drop UI + CLI</li>
-        </ul>
-        <div class="pcard-links">
-          <a class="pl-primary" href="https://github.com/challanamuskan/sme-inbox-parser" target="_blank">View on GitHub →</a>
-        </div>
-      </div>
-      <div class="pcard rv d2">
-        <div class="pcard-num">03</div>
-        <span class="pcard-badge b-orange">Curated List</span>
-        <h3>Awesome Indian SME Tools</h3>
-        <p>Open-source tools, APIs, SDKs for developers building software for Indian small businesses.</p>
-        <ul class="feat-list">
-          <li><span class="feat-check"></span>GST & invoice compliance libraries</li>
-          <li><span class="feat-check"></span>UPI, Razorpay, Cashfree SDKs</li>
-          <li><span class="feat-check"></span>India Stack & GSTN API references</li>
-          <li><span class="feat-check"></span>WhatsApp parsing & automation tools</li>
-          <li><span class="feat-check"></span>Self-hostable analytics & BI tools</li>
-          <li><span class="feat-check"></span>30+ tools across 10 categories</li>
-        </ul>
-        <div class="pcard-links">
-          <a class="pl-primary" href="https://github.com/challanamuskan/awesome-indian-sme-tools" target="_blank">Browse List →</a>
-        </div>
+        <div class="step-title">Fork the repo</div>
+        <div class="step-desc">One click on GitHub. Your own copy, your own data.</div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- DEMO -->
-<section class="light-section" id="demo" style="padding-top:0">
-  <div class="container">
-    <div class="tag-pill rv">Live preview</div>
-    <h2 class="section-h2 rv">Your business,<br/><span class="c">fully digital.</span></h2>
-    <p class="section-sub rv">Real CRM — pre-loaded demo retail shop. Login: admin / demo123</p>
-    <div class="demo-frame rv">
-      <div class="frame-bar">
-        <div class="frame-dots"><span></span><span></span><span></span></div>
-        <div class="frame-url">crm-template.streamlit.app</div>
-      </div>
-      <div class="frame-body">
-        <div class="frame-nav">
-          <div class="fnav-label">CRM Modules</div>
-          <div class="fnav-item on"><span class="fnav-dot"></span>Dashboard</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Stock Tracker</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>GST Invoices</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Ad Tracker</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Compliance</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Business Intel</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>WhatsApp Orders</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Smart Reminders</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Promotions</div>
-          <div class="fnav-item"><span class="fnav-dot"></span>Website Manager</div>
-        </div>
-        <div class="frame-content">
-          <div class="fc-top"><div class="fc-title">Demo Retail Shop — Dashboard</div><div class="live-dot">● Live</div></div>
-          <div class="kpi-row">
-            <div class="kpi"><div class="kpi-val" style="color:var(--cyan)">₹67,650</div><div class="kpi-lbl">Total Revenue</div><div class="kpi-trend t-up">↑ 12% this month</div></div>
-            <div class="kpi"><div class="kpi-val" style="color:var(--purple)">5</div><div class="kpi-lbl">Customers</div><div class="kpi-trend t-up">↑ 2 new</div></div>
-            <div class="kpi"><div class="kpi-val" style="color:var(--orange2)">₹13,200</div><div class="kpi-lbl">Pending</div><div class="kpi-trend t-mid">2 overdue</div></div>
-            <div class="kpi"><div class="kpi-val" style="color:var(--green)">7d</div><div class="kpi-lbl">GSTR-1 Due</div><div class="kpi-trend t-mid">File soon</div></div>
-          </div>
-          <div class="table-wrap">
-            <div class="t-head"><span>Customer</span><span>Product</span><span>Amount</span><span>Date</span><span>Status</span></div>
-            <div class="t-row"><span class="t-name">Ramesh Traders</span><span>Bearing Set ×5</span><span>₹12,500</span><span>Today</span><span class="pill p-g">Paid</span></div>
-            <div class="t-row"><span class="t-name">Priya Stores</span><span>Cotton Fabric 50m</span><span>₹9,000</span><span>Yesterday</span><span class="pill p-a">Pending</span></div>
-            <div class="t-row"><span class="t-name">Kumar &amp; Co</span><span>Industrial Belt ×3</span><span>₹6,750</span><span>Apr 24</span><span class="pill p-g">Paid</span></div>
-            <div class="t-row"><span class="t-name">Sharma Hardware</span><span>Pulley Set ×2</span><span>₹4,200</span><span>Apr 23</span><span class="pill p-r">Overdue</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p style="text-align:center;margin-top:1.5rem;font-size:.82rem;color:rgba(255,255,255,.25)">Full interactive → <a href="https://crm-template.streamlit.app" target="_blank" style="color:var(--cyan);text-decoration:none;font-weight:700">crm-template.streamlit.app ↗</a></p>
-  </div>
-</section>
-
-<!-- STEPS -->
-<div class="steps-section">
-  <div class="container">
-    <div style="text-align:center"><div class="tag-pill rv" style="display:inline-flex">Setup</div>
-    <h2 class="section-h2 rv" style="text-align:center">Live in <span class="c">30 minutes.</span></h2></div>
-    <div class="steps-grid">
-      <div class="steps-line"></div>
-      <div class="step rv"><div class="step-orb">1</div><div class="step-t">Fork the repo</div><div class="step-d">One click. Your copy on GitHub — free forever.</div></div>
-      <div class="step rv d1"><div class="step-orb">2</div><div class="step-t">Edit config.yaml</div><div class="step-d">Name, GSTIN, currency. No code — just text.</div></div>
-      <div class="step rv d2"><div class="step-orb">3</div><div class="step-t">Setup Supabase</div><div class="step-d">Free DB in 2 min. Copy keys. Run seed SQL.</div></div>
-      <div class="step rv d3"><div class="step-orb">4</div><div class="step-t">Deploy & go live</div><div class="step-d">Streamlit Cloud. Paste 3 secrets. Click Deploy.</div></div>
-    </div>
-  </div>
-</div>
-
-<!-- ABOUT -->
-<section class="light-section" id="about" style="border-top:1px solid var(--border)">
-  <div class="container">
-    <div class="about-grid">
+    <div class="deploy-step">
+      <div class="step-num">2</div>
       <div>
-        <div class="tag-pill rv">The builder</div>
-        <h2 class="section-h2 rv">Not demos.<br/><span class="c">Real deployments.</span></h2>
-        <p class="section-sub rv">The Satyam Tex Fabb CRM is live in daily use by a 30-year-old Jaipur textile business — saving 8+ hours of manual admin weekly.</p>
-        <ul class="creds-list rv">
-          <li><span class="cred-bar"></span>MCA @ Vivekananda Global University, Jaipur (2028)</li>
-          <li><span class="cred-bar"></span>DPIIT-registered founder · 2 active paying clients</li>
-          <li><span class="cred-bar"></span>McKinsey Forward · 4× Nestlé YEP Academy</li>
-          <li><span class="cred-bar"></span>Top 3 — IIM Rohtak National Competition</li>
-          <li><span class="cred-bar"></span>Applied: IIMA AI Residency · Google for Startups AI First</li>
-        </ul>
+        <div class="step-title">Create Supabase project</div>
+        <div class="step-desc">Free tier. Run seed.sql. All tables + demo data ready.</div>
       </div>
-      <div class="rv d2">
-        <div class="quote-card">
-          <div class="quote-q">"</div>
-          <div class="quote-t">What can AI actually fix for a small Indian business today?</div>
-          <div class="quote-c">— Muskan Challana · AI Product Builder · Jaipur, India</div>
-        </div>
-        <div class="about-btns">
-          <a class="btn-glow" href="https://muskanchallana.vercel.app" target="_blank"><span>Portfolio →</span></a>
-          <a class="btn-ghost" href="mailto:cmuskan2068@gmail.com">Hire Me</a>
-        </div>
+    </div>
+    <div class="deploy-step">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Edit config.yaml</div>
+        <div class="step-desc">Your business name, GSTIN, currency, features. One file.</div>
+      </div>
+    </div>
+    <div class="deploy-step">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">Deploy to Streamlit Cloud</div>
+        <div class="step-desc">Connect repo, add secrets, click Deploy. ✅ Done.</div>
       </div>
     </div>
   </div>
+
+  <div style="margin-top: 3rem; text-align: center;" class="reveal">
+    <a href="https://github.com/challanamuskan/indian-sme-crm-template" class="btn-primary">Get Started on GitHub →</a>
+  </div>
 </section>
 
-<!-- CTA -->
-<div class="cta-section">
-  <div class="cta-glow"></div>
-  <div class="cta-h2 rv">Deploy your CRM<br/><span class="grad-text">for free, today.</span></div>
-  <p class="cta-sub rv">Open-source. No vendor lock-in. Everything your business needs.</p>
-  <div class="cta-btns rv">
-    <a class="btn-glow" href="https://crm-template.streamlit.app" target="_blank"><span>Try Live Demo →</span></a>
-    <a class="btn-ghost" href="https://github.com/challanamuskan/indian-sme-crm-template" target="_blank">Fork on GitHub</a>
-    <a class="btn-ghost" href="mailto:cmuskan2068@gmail.com">Hire me for your SME</a>
+<div class="section-divider"></div>
+
+<!-- REPOS -->
+<section class="section" id="repos">
+  <div class="reveal">
+    <p class="section-label">Open Source</p>
+    <h2 class="section-title">The SME Tools<br>Ecosystem</h2>
+    <p class="section-sub">Three repos. One mission: give Indian SMEs tools that used to cost lakhs, for free.</p>
   </div>
-</div>
+
+  <div class="repos-grid reveal">
+    <a href="https://github.com/challanamuskan/indian-sme-crm-template" class="repo-card">
+      <span class="repo-icon">🏪</span>
+      <div class="repo-name">indian-sme-crm-template</div>
+      <div class="repo-org">challanamuskan / indian-sme-crm-template</div>
+      <div class="repo-desc">Full business OS: CRM, GST, stock, WhatsApp, compliance, marketing, finance, global export. 21 modules. Fork and deploy in 30 min.</div>
+    </a>
+    <a href="https://github.com/challanamuskan/sme-inbox-parser" class="repo-card">
+      <span class="repo-icon">📬</span>
+      <div class="repo-name">sme-inbox-parser</div>
+      <div class="repo-org">challanamuskan / sme-inbox-parser</div>
+      <div class="repo-desc">Parse WhatsApp exports, Gmail threads, and website leads into clean CRM-ready CSV. CLI + Streamlit drag-and-drop UI.</div>
+    </a>
+    <a href="https://github.com/challanamuskan/awesome-indian-sme-tools" class="repo-card">
+      <span class="repo-icon">📋</span>
+      <div class="repo-name">awesome-indian-sme-tools</div>
+      <div class="repo-org">challanamuskan / awesome-indian-sme-tools</div>
+      <div class="repo-desc">Curated list of open-source tools across CRM, fintech, supply chain, marketing, AI, and regulatory APIs for Indian SME builders.</div>
+    </a>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">SMETools</div>
-  <div class="footer-copy">Built by <a href="https://muskanchallana.vercel.app" target="_blank">Muskan Challana</a> · Jaipur · MIT License</div>
+  <div class="footer-left">
+    Built by <a href="https://muskanchallana.vercel.app" style="color:var(--saffron);text-decoration:none;">Muskan Challana</a> · DPIIT Registered · Jaipur, India
+  </div>
   <div class="footer-links">
-    <a href="https://github.com/challanamuskan" target="_blank">GitHub</a>
-    <a href="https://www.linkedin.com/in/muskan-challana-408234163/" target="_blank">LinkedIn</a>
-    <a href="mailto:cmuskan2068@gmail.com">Email</a>
-    <a href="https://muskanchallana.vercel.app" target="_blank">Portfolio</a>
+    <a href="https://muskanchallana.vercel.app">Portfolio</a>
+    <a href="https://crm-template.streamlit.app">Live Demo</a>
+    <a href="https://github.com/challanamuskan">GitHub</a>
+    <a href="https://github.com/challanamuskan/indian-sme-crm-template/blob/main/LICENSE">MIT License</a>
   </div>
 </footer>
 
 <script>
-/* ── PARTICLES ── */
-const canvas=document.getElementById('particles'),ctx=canvas.getContext('2d');
-let W,H,pts=[];
-function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
-resize();window.addEventListener('resize',resize);
-const COLS=['rgba(0,245,255,','rgba(180,79,255,','rgba(255,107,53,','rgba(0,255,136,'];
-for(let i=0;i<80;i++){pts.push({x:Math.random()*1920,y:Math.random()*1080,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*1.5+.5,c:COLS[Math.floor(Math.random()*COLS.length)],o:Math.random()*.5+.1})}
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  pts.forEach(p=>{
-    p.x+=p.vx;p.y+=p.vy;
-    if(p.x<0)p.x=W;if(p.x>W)p.x=0;
-    if(p.y<0)p.y=H;if(p.y>H)p.y=0;
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-    ctx.fillStyle=p.c+p.o+')';ctx.fill();
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
   });
-  pts.forEach((a,i)=>pts.slice(i+1).forEach(b=>{
-    const d=Math.hypot(a.x-b.x,a.y-b.y);
-    if(d<120){ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.strokeStyle='rgba(0,245,255,'+(1-d/120)*.08+')';ctx.lineWidth=.5;ctx.stroke()}
-  }));
-  requestAnimationFrame(draw);
-}
-draw();
+}, { threshold: 0.1 });
 
-/* ── SCROLL REVEAL ── */
-const ro=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.1});
-document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
-
-/* ── NAV SHRINK ── */
-window.addEventListener('scroll',()=>{
-  const n=document.getElementById('nav');
-  n.style.padding=window.scrollY>80?'.75rem 4rem':'1.1rem 4rem';
-});
-
-/* ── COUNTER ANIMATION ── */
-function counter(el){
-  const t=+el.dataset.val,s=el.dataset.sfx||'',d=1800,steps=50;
-  let i=0;
-  const iv=setInterval(()=>{
-    i++;el.textContent=Math.round(t*(i/steps))+s;
-    if(i>=steps){clearInterval(iv);el.textContent=t+s}
-  },d/steps);
-}
-const co=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      e.target.querySelectorAll('[data-val]').forEach(counter);
-      co.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-document.querySelectorAll('#stats-grid').forEach(el=>co.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
